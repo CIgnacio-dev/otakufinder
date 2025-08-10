@@ -1,16 +1,18 @@
 export interface Anime {
-  mal_id: number
-  title: string
+  mal_id: number;
+  title: string;
+  synopsis?: string;
+  score?: number;
+  url?: string;
   images: {
     jpg: {
-      image_url: string
-    }
-  }
-  synopsis: string
-  score: number
-  episodes: number
-  status: string
+      image_url: string;
+      large_image_url?: string;
+    };
+  };
+  genres?: { mal_id: number; name: string }[];
 }
+
 
 export async function searchAnime(query: string): Promise<Anime[]> {
   const response = await fetch(`https://api.jikan.moe/v4/anime?q=${query}`)
